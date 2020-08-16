@@ -215,6 +215,7 @@ func (m *ConsumeResponse) GetRecord() *Record {
 	return nil
 }
 
+// START: record
 type Record struct {
 	Value                []byte   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	Offset               uint64   `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`

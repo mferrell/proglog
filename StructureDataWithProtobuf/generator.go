@@ -8,7 +8,7 @@ import (
     "github.com/gogo/protobuf/proto"
     "github.com/gogo/protobuf/protoc-gen-gogo/descriptor"
     "github.com/gogo/protobuf/protoc-gen-gogo/generator"
-    "github.com/travisjeffery/protoc-gen-setter/setter"
+    "github.com/mferrell/protoc-gen-setter/setter"
 )
 
 type Generator struct {

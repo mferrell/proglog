@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/gogo/protobuf/proto"
+	api "github.com/mferrell/proglog/api/v1"
 	"github.com/stretchr/testify/require"
-	api "github.com/travisjeffery/proglog/api/v1"
 )
 
 func TestLog(t *testing.T) {
@@ -89,7 +89,7 @@ func testReader(t *testing.T, log *Log) {
 
 	read := &api.Record{}
 	err = proto.Unmarshal(b[lenWidth:], read)
-	require.NoError(t,err)
+	require.NoError(t, err)
 	require.Equal(t, append, read)
 }
 

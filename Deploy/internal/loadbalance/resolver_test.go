@@ -2,6 +2,7 @@
 package loadbalance_test
 
 import (
+	grpc2 "github.com/mferrell/proglog/internal/server/grpc"
 	"net"
 	"testing"
 
@@ -12,10 +13,9 @@ import (
 	"google.golang.org/grpc/resolver"
 	"google.golang.org/grpc/serviceconfig"
 
-	api "github.com/travisjeffery/proglog/api/v1"
-	"github.com/travisjeffery/proglog/internal/loadbalance"
-	"github.com/travisjeffery/proglog/internal/config"
-	"github.com/travisjeffery/proglog/internal/server"
+	api "github.com/mferrell/proglog/api/v1"
+	"github.com/mferrell/proglog/internal/config"
+	"github.com/mferrell/proglog/internal/loadbalance"
 )
 
 func TestResolver(t *testing.T) {
@@ -32,7 +32,7 @@ func TestResolver(t *testing.T) {
 	require.NoError(t, err)
 	serverCreds := credentials.NewTLS(tlsConfig)
 
-	srv, err := server.NewGRPCServer(&server.Config{
+	srv, err := grpc2.NewGRPCServer(&grpc2.Config{
 		GetServerer: &getServers{}, //<label id="get_servers_mock"/>
 	}, grpc.Creds(serverCreds))
 	require.NoError(t, err)

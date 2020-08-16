@@ -4,8 +4,8 @@ package log
 import (
 	"bytes"
 	"crypto/tls"
-	"io"
 	"fmt"
+	"io"
 	"net"
 	"os"
 	"path/filepath"
@@ -16,7 +16,7 @@ import (
 
 	"github.com/hashicorp/raft"
 
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 )
 
 type DistributedLog struct {
@@ -310,7 +310,6 @@ func (f *fsm) Snapshot() (raft.FSMSnapshot, error) {
 	return &snapshot{reader: r}, nil
 }
 
-
 var _ raft.FSMSnapshot = (*snapshot)(nil)
 
 type snapshot struct {
@@ -326,10 +325,11 @@ func (s *snapshot) Persist(sink raft.SnapshotSink) error {
 }
 
 func (s *snapshot) Release() {}
+
 // END: fsm_snapshot
 
 // START: fsm_restore
-func (f *fsm) Restore(r io.ReadCloser) error {	
+func (f *fsm) Restore(r io.ReadCloser) error {
 	b := make([]byte, lenWidth)
 	var buf bytes.Buffer
 	for i := 0; ; i++ {
@@ -360,6 +360,7 @@ func (f *fsm) Restore(r io.ReadCloser) error {
 	}
 	return nil
 }
+
 // END: fsm_restore
 
 // START: log_store_intro

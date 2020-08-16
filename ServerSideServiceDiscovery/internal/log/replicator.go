@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 )
 
 type Replicator struct {
@@ -144,6 +144,7 @@ func (r *Replicator) Close() error {
 	close(r.close)
 	return nil
 }
+
 // END: close
 
 // START: err

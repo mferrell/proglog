@@ -14,10 +14,10 @@ import (
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/status"
 
-	api "github.com/travisjeffery/proglog/api/v1"
-	"github.com/travisjeffery/proglog/internal/auth"
-	"github.com/travisjeffery/proglog/internal/config"
-	"github.com/travisjeffery/proglog/internal/log"
+	api "github.com/mferrell/proglog/api/v1"
+	"github.com/mferrell/proglog/internal/auth"
+	"github.com/mferrell/proglog/internal/config"
+	"github.com/mferrell/proglog/internal/log"
 )
 
 func TestServer(t *testing.T) {
@@ -197,10 +197,10 @@ func testProduceConsumeStream(
 	ctx := context.Background()
 
 	records := []*api.Record{{
-		Value: []byte("first message"),
+		Value:  []byte("first message"),
 		Offset: 0,
 	}, {
-		Value: []byte("second message"),
+		Value:  []byte("second message"),
 		Offset: 1,
 	}}
 

@@ -10,3 +10,4 @@ func main() {
 	res := command.GeneratePlugin(req, gen, "_setter.go")
 	command.Write(res)
 }
+cd

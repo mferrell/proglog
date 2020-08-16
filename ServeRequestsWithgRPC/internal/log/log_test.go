@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/gogo/protobuf/proto"
+	api "github.com/mferrell/proglog/api/v1"
 	"github.com/stretchr/testify/require"
-	api "github.com/travisjeffery/proglog/api/v1"
 )
 
 func TestLog(t *testing.T) {
@@ -60,6 +60,7 @@ func testOutOfRangeErr(t *testing.T, log *Log) {
 	apiErr := err.(api.ErrOffsetOutOfRange)
 	require.Equal(t, uint64(1), apiErr.Offset)
 }
+
 // END: test
 
 func testInitExisting(t *testing.T, o *Log) {

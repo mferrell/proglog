@@ -6,7 +6,7 @@ import (
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials"
@@ -83,6 +83,7 @@ func (s *grpcServer) Produce(ctx context.Context, req *api.ProduceRequest) (
 	}
 	return &api.ProduceResponse{Offset: offset}, nil
 }
+
 // END: produce_authorize
 
 // START: consume_authorize
@@ -96,13 +97,14 @@ func (s *grpcServer) Consume(ctx context.Context, req *api.ConsumeRequest) (
 	); err != nil {
 		return nil, err
 	}
-	// END_HIGHLIGHT	
+	// END_HIGHLIGHT
 	record, err := s.CommitLog.Read(req.Offset)
 	if err != nil {
 		return nil, err
 	}
 	return &api.ConsumeResponse{Record: record}, nil
 }
+
 // END: consume_authorize
 // END: request_response
 
@@ -147,6 +149,7 @@ func (s *grpcServer) ConsumeStream(
 		}
 	}
 }
+
 // END: stream
 
 // START: commitlog

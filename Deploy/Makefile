@@ -63,9 +63,9 @@ $$(go list -f '{{ .Dir }}' -m github.com/gogo/protobuf) \
 
 
 # START: build_docker
-TAG ?= 0.0.1
+TAG ?= 0.0.2
 
 build-docker:
-	docker build -t github.com/travisjeffery/proglog:$(TAG) .
+	docker build -t mferrell/proglog:$(TAG) .
 
 # END: build_docker

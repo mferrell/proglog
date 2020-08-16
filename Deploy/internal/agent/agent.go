@@ -10,14 +10,15 @@ import (
 	"time"
 
 	"github.com/hashicorp/raft"
+	grpc2 "github.com/mferrell/proglog/internal/server/grpc"
 	"github.com/soheilhy/cmux"
+	"github.com/zang-cloud/grpc-json"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	"github.com/travisjeffery/proglog/internal/auth"
-	"github.com/travisjeffery/proglog/internal/discovery"
-	"github.com/travisjeffery/proglog/internal/log"
-	"github.com/travisjeffery/proglog/internal/server"
+	"github.com/mferrell/proglog/internal/auth"
+	"github.com/mferrell/proglog/internal/discovery"
+	"github.com/mferrell/proglog/internal/log"
 )
 
 type Config struct {
@@ -71,7 +72,7 @@ func New(config Config) (*Agent, error) {
 		a.setupServer,
 		a.setupMembership,
 	}
-	for i, fn := range setup {
+	for _, fn := range setup {
 		if err := fn(); err != nil {
 			return nil, err
 		}
@@ -132,7 +133,7 @@ func (a *Agent) setupServer() error {
 		a.Config.ACLModelFile,
 		a.Config.ACLPolicyFile,
 	)
-	serverConfig := &server.Config{
+	serverConfig := &grpc2.Config{
 		CommitLog:   a.log,
 		Authorizer:  authorizer,
 		GetServerer: a.log,
@@ -143,7 +144,7 @@ func (a *Agent) setupServer() error {
 		opts = append(opts, grpc.Creds(creds))
 	}
 	var err error
-	a.server, err = server.NewGRPCServer(serverConfig, opts...)
+	a.server, err = grpc2.NewGRPCServer(serverConfig, opts...)
 	if err != nil {
 		return err
 	}
@@ -153,6 +154,7 @@ func (a *Agent) setupServer() error {
 			_ = a.Shutdown()
 		}
 	}()
+	go grpcj.Serve(a.server)
 	return err
 }
 

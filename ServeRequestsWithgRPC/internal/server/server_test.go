@@ -7,9 +7,9 @@ import (
 	"net"
 	"testing"
 
+	api "github.com/mferrell/proglog/api/v1"
+	"github.com/mferrell/proglog/internal/log"
 	"github.com/stretchr/testify/require"
-	api "github.com/travisjeffery/proglog/api/v1"
-	"github.com/travisjeffery/proglog/internal/log"
 	"google.golang.org/grpc"
 )
 
@@ -19,12 +19,9 @@ func TestServer(t *testing.T) {
 		client api.LogClient,
 		config *Config,
 	){
-		"produce/consume a message to/from the log succeeeds":
-			testProduceConsume,
-		"produce/consume stream succeeds":
-			testProduceConsumeStream,
-		"consume past log boundary fails":
-			testConsumePastBoundary,
+		"produce/consume a message to/from the log succeeeds": testProduceConsume,
+		"produce/consume stream succeeds":                     testProduceConsumeStream,
+		"consume past log boundary fails":                     testConsumePastBoundary,
 	} {
 		t.Run(scenario, func(t *testing.T) {
 			client, config, teardown := setupTest(t, nil)
@@ -33,6 +30,7 @@ func TestServer(t *testing.T) {
 		})
 	}
 }
+
 // END: intro
 
 // START: setup
@@ -78,6 +76,7 @@ func setupTest(t *testing.T, fn func(*Config)) (
 		clog.Remove()
 	}
 }
+
 // END: setup
 
 // START: produceconsume
@@ -86,7 +85,6 @@ func testProduceConsume(t *testing.T, client api.LogClient, config *Config) {
 
 	want := &api.Record{
 		Value: []byte("hello world"),
-
 	}
 
 	produce, err := client.Produce(
@@ -103,6 +101,7 @@ func testProduceConsume(t *testing.T, client api.LogClient, config *Config) {
 	require.NoError(t, err)
 	require.Equal(t, want, consume.Record)
 }
+
 // END: produceconsume
 
 // START: consumeerror
@@ -132,6 +131,7 @@ func testConsumePastBoundary(
 		t.Fatalf("got err: %v, want: %v", got, want)
 	}
 }
+
 // END: consumeerror
 
 // START: stream
@@ -143,10 +143,10 @@ func testProduceConsumeStream(
 	ctx := context.Background()
 
 	records := []*api.Record{{
-		Value: []byte("first message"),
+		Value:  []byte("first message"),
 		Offset: 0,
 	}, {
-		Value: []byte("second message"),
+		Value:  []byte("second message"),
 		Offset: 1,
 	}}
 
@@ -186,4 +186,5 @@ func testProduceConsumeStream(
 		}
 	}
 }
+
 // END: stream

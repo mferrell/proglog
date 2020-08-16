@@ -14,10 +14,10 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	"github.com/travisjeffery/proglog/internal/auth"
-	"github.com/travisjeffery/proglog/internal/discovery"
-	"github.com/travisjeffery/proglog/internal/log"
-	"github.com/travisjeffery/proglog/internal/server"
+	"github.com/mferrell/proglog/internal/auth"
+	"github.com/mferrell/proglog/internal/discovery"
+	"github.com/mferrell/proglog/internal/log"
+	"github.com/mferrell/proglog/internal/server"
 )
 
 type Config struct {

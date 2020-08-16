@@ -12,13 +12,13 @@ import (
 	"google.golang.org/grpc/resolver"
 	"google.golang.org/grpc/serviceconfig"
 
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 )
 
 type Resolver struct {
-	mu           sync.Mutex
-	clientConn   resolver.ClientConn
-	resolverConn *grpc.ClientConn
+	mu            sync.Mutex
+	clientConn    resolver.ClientConn
+	resolverConn  *grpc.ClientConn
 	serviceConfig *serviceconfig.ParseResult
 }
 
@@ -91,7 +91,7 @@ func (r *Resolver) ResolveNow(resolver.ResolveNowOptions) {
 		})
 	}
 	r.clientConn.UpdateState(resolver.State{
-		Addresses: addrs,
+		Addresses:     addrs,
 		ServiceConfig: r.serviceConfig,
 	})
 }

@@ -1,4 +1,4 @@
-package server
+package grpc
 
 // START: imports
 import (
@@ -16,8 +16,9 @@ import (
 	"google.golang.org/grpc/peer"
 	"google.golang.org/grpc/status"
 
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 )
+
 // END: imports
 
 var _ api.LogServer = (*grpcServer)(nil)
@@ -77,6 +78,7 @@ func NewGRPCServer(config *Config, opts ...grpc.ServerOption) (
 
 	return gsrv, nil
 }
+
 // END: new
 
 func (s *grpcServer) Produce(ctx context.Context, req *api.ProduceRequest) (

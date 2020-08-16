@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 	"google.golang.org/grpc"
 )
 

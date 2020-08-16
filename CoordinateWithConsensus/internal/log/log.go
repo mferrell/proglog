@@ -11,7 +11,7 @@ import (
 	"strings"
 	"sync"
 
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 )
 
 type Log struct {
@@ -97,7 +97,7 @@ func (l *Log) Read(off uint64) (*api.Record, error) {
 	defer l.mu.RUnlock()
 	var s *segment
 	for _, segment := range l.segments {
-		if segment.baseOffset <= off && off < segment.nextOffset  {
+		if segment.baseOffset <= off && off < segment.nextOffset {
 			s = segment
 			break
 		}
@@ -205,7 +205,7 @@ func (l *Log) Reader() io.Reader {
 	readers := make([]io.Reader, len(l.segments))
 	for i, segment := range l.segments {
 		readers[i] = &originReader{segment.store, 0}
-	}	
+	}
 	return io.MultiReader(readers...)
 }
 
@@ -219,4 +219,5 @@ func (o *originReader) Read(p []byte) (int, error) {
 	o.off += int64(n)
 	return n, err
 }
+
 // END: reader

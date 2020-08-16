@@ -15,9 +15,9 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	api "github.com/travisjeffery/proglog/api/v1"
-	"github.com/travisjeffery/proglog/internal/agent"
-	"github.com/travisjeffery/proglog/internal/config"
+	api "github.com/mferrell/proglog/api/v1"
+	"github.com/mferrell/proglog/internal/agent"
+	"github.com/mferrell/proglog/internal/config"
 )
 
 // END: imports

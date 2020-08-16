@@ -14,10 +14,10 @@ import (
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/status"
 
-	api "github.com/travisjeffery/proglog/api/v1"
-	"github.com/travisjeffery/proglog/internal/auth"
-	"github.com/travisjeffery/proglog/internal/config"
-	"github.com/travisjeffery/proglog/internal/log"
+	api "github.com/mferrell/proglog/api/v1"
+	"github.com/mferrell/proglog/internal/auth"
+	"github.com/mferrell/proglog/internal/config"
+	"github.com/mferrell/proglog/internal/log"
 )
 
 // START: func_update
@@ -34,8 +34,8 @@ func TestServer(t *testing.T) {
 		// END: func_update
 		// START: test_table
 		"produce/consume a message to/from the log succeeeds": testProduceConsume,
-		"produce/consume stream succeeds": testProduceConsumeStream,
-		"consume past log boundary fails": testConsumePastBoundary,
+		"produce/consume stream succeeds":                     testProduceConsumeStream,
+		"consume past log boundary fails":                     testConsumePastBoundary,
 		// START_HIGHLIGHT
 		"unauthorized fails": testUnauthorized,
 		// END_HIGHLIGHT

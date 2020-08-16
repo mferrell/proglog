@@ -7,7 +7,7 @@ import (
 	"path"
 
 	"github.com/gogo/protobuf/proto"
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 )
 
 type segment struct {
@@ -134,6 +134,7 @@ func (s *segment) Remove() error {
 	}
 	return nil
 }
+
 // END: remove
 
 // START: nearestmultiple

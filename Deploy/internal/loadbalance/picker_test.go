@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/travisjeffery/proglog/internal/loadbalance"
+	"github.com/mferrell/proglog/internal/loadbalance"
 )
 
 func TestPickerProducesToLeader(t *testing.T) {

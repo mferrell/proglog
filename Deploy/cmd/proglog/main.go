@@ -1,4 +1,3 @@
-// START: beginning
 package main
 
 import (
@@ -8,10 +7,10 @@ import (
 	"path"
 	"syscall"
 
+	"github.com/mferrell/proglog/internal/agent"
+	"github.com/mferrell/proglog/internal/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/travisjeffery/proglog/internal/agent"
-	"github.com/travisjeffery/proglog/internal/config"
 )
 
 func main() {

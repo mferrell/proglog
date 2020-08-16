@@ -15,7 +15,7 @@ spec:
       name: {{ include "proglog.fullname" . }}
       labels: {{ include "proglog.labels" . | nindent 8 }}
     spec:
-      # {{initialContainers}}
+      # {initialContainers}
       # END: initial
       # START: initial_containers
       initContainers:
@@ -44,7 +44,7 @@ spec:
         # START: initial
       # END: initial_containers
       # START: initial
-      # {{containers}}
+      # {containers}
       # END: initial
       # START: containers
       containers:
@@ -58,7 +58,7 @@ spec:
         args:
           - --config-file=/var/run/proglog/config.yaml
         # END: initial
-        # {{probes}}
+        # {probes}
         # END: containers
         # START: probes
         readinessProbe:

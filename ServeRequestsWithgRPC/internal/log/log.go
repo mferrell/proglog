@@ -11,7 +11,7 @@ import (
 	"strings"
 	"sync"
 
-	api "github.com/travisjeffery/proglog/api/v1"
+	api "github.com/mferrell/proglog/api/v1"
 )
 
 type Log struct {
@@ -219,4 +219,5 @@ func (o *originReader) Read(p []byte) (int, error) {
 	o.off += int64(n)
 	return n, err
 }
+
 // END: reader

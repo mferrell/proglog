@@ -1,5 +1,5 @@
 // START: intro
-package server
+package grpc
 
 import (
 	"context"
@@ -15,10 +15,10 @@ import (
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/status"
 
-	api "github.com/travisjeffery/proglog/api/v1"
-	"github.com/travisjeffery/proglog/internal/auth"
-	"github.com/travisjeffery/proglog/internal/config"
-	"github.com/travisjeffery/proglog/internal/log"
+	api "github.com/mferrell/proglog/api/v1"
+	"github.com/mferrell/proglog/internal/auth"
+	"github.com/mferrell/proglog/internal/config"
+	"github.com/mferrell/proglog/internal/log"
 	healthpb "google.golang.org/grpc/health/grpc_health_v1"
 )
 
@@ -33,7 +33,7 @@ func TestServer(t *testing.T) {
 		"consume past log boundary fails":                     testConsumePastBoundary,
 		"unauthorized fails":                                  testUnauthorized,
 		// START_HIGHLIGHT
-		"healthcheck succeeds":                                testHealthCheck,
+		"healthcheck succeeds": testHealthCheck,
 		// END_HIGHLIGHT
 	} {
 		t.Run(scenario, func(t *testing.T) {
@@ -309,4 +309,5 @@ func testHealthCheck(
 	require.NoError(t, err)
 	require.Equal(t, healthpb.HealthCheckResponse_SERVING, res.Status)
 }
+
 // END: healthcheck

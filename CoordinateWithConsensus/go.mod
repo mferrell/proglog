@@ -1,4 +1,4 @@
-module github.com/travisjeffery/proglog
+module github.com/mferrell/proglog
 
 require (
 	github.com/casbin/casbin v1.9.1
